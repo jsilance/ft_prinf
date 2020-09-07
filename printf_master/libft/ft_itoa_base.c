@@ -6,7 +6,7 @@
 /*   By: jsilance <jsilance@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/09 13:40:49 by jsilance          #+#    #+#             */
-/*   Updated: 2020/01/28 00:36:49 by jsilance         ###   ########.fr       */
+/*   Updated: 2020/02/07 02:18:13 by jsilance         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,12 @@ char				*ft_itoa_base(unsigned long long int n, char *charset)
 	index = 0;
 	if (!(str = malloc(sizeof(char) * (intlen) + 1)))
 		return (NULL);
-	ft_bzero(str, intlen + 1);
+	ft_bzero(str, intlen);
 	if (!n && (str[0] = 48))
 		return (str);
 	while (n > count)
 	{
-		str[intlen - index++] = charset[(n % count)];
+		str[intlen - ++index] = charset[(n % count)];
 		n /= count;
 	}
 	str[intlen - index] = charset[(n % count)];

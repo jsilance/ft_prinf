@@ -1,26 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_dectohex.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jsilance <jsilance@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/07 10:33:59 by jsilance          #+#    #+#             */
-/*   Updated: 2020/02/07 02:04:16 by jsilance         ###   ########.fr       */
+/*   Created: 2019/12/11 19:24:01 by ssimon            #+#    #+#             */
+/*   Updated: 2020/03/11 03:38:48 by jsilance         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-void	ft_bzero(void *s, size_t n)
+char	*ft_dectohex(unsigned long nb, char *str)
 {
-	size_t			count;
-	unsigned char	*tmp_str;
+	int		i;
+	int		j;
+	char	tab[25];
+	char	*adress;
 
-	if (!s)
-		return ;
-	count = 0;
-	tmp_str = (unsigned char *)s;
-	while (count < n)
-		tmp_str[count++] = '\0';
+	i = 0;
+	j = 0;
+	if (nb == 0)
+		tab[i++] = '0';
+	while (nb != 0)
+	{
+		tab[i++] = str[nb % 16];
+		nb /= 16;
+	}
+	if (!(adress = (char *)ft_calloc(i + 1, sizeof(char))))
+		return (NULL);
+	while (i > 0)
+		adress[j++] = tab[i-- - 1];
+	adress[j] = '\0';
+	return (adress);
 }

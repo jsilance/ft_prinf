@@ -6,7 +6,7 @@
 /*   By: jsilance <jsilance@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/24 21:52:45 by jsilance          #+#    #+#             */
-/*   Updated: 2020/01/28 00:31:42 by jsilance         ###   ########.fr       */
+/*   Updated: 2020/02/29 00:54:06 by jsilance         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static char	*s_arg_is_null(va_list ap)
 	return (ptr);
 }
 
-char		*arg_treat(va_list ap, t_flarg *flarg)
+char		*ft_arg_treat(va_list ap, t_flarg *flarg)
 {
 	if (flarg->arg_type == 's')
 		return (ft_strdup(s_arg_is_null(ap)));
@@ -43,16 +43,16 @@ char		*arg_treat(va_list ap, t_flarg *flarg)
 	else if (flarg->arg_type == '%')
 		return (ft_chardup('%'));
 	else if (flarg->arg_type == 'p')
-		return (ft_itoa_base(va_arg(ap, unsigned long),
+		return (ft_dectohex(va_arg(ap, unsigned long),
 			"0123456789abcdef"));
 	else if (flarg->arg_type == 'u')
 		return (ft_uitoa(va_arg(ap, unsigned int)));
 	else if (flarg->arg_type == 'x')
-		return (ft_itoa_base(va_arg(ap, unsigned long long),
+		return (ft_dectohex(va_arg(ap, unsigned long long),
 			"0123456789abcdef"));
 	else if (flarg->arg_type == 'X')
-		return (ft_itoa_base(va_arg(ap, unsigned long long),
+		return (ft_dectohex(va_arg(ap, unsigned long long),
 			"0123456789ABCDEF"));
 	else
-		return (NULL);
+		return (ft_chardup(flarg->arg_type));
 }
